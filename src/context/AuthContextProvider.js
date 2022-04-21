@@ -14,8 +14,6 @@ const AuthContextProvider = (props) => {
     }, [])
     
 
-
-
   return (
     <AuthContext.Provider value={{currentUser}}>
         {props.children}
