@@ -1,14 +1,16 @@
-import './App.css';
-import AuthContextProvider from './context/AuthContextProvider';
-import AppRouter from './router/AppRouter';
+import "./App.css";
+import AuthContextProvider from "./context/AuthContextProvider";
+import BlogContextProvider from "./context/BlogContextProvider";
+import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
     <div className="App">
-      <AuthContextProvider>
-        <AppRouter/>
-      </AuthContextProvider>
-      
+      <BlogContextProvider>
+        <AuthContextProvider>
+          <AppRouter />
+        </AuthContextProvider>
+      </BlogContextProvider>
     </div>
   );
 }

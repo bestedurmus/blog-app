@@ -6,7 +6,7 @@ export const AuthContext = createContext()
 
 const AuthContextProvider = (props) => {
     const [currentUser, setcurrentUser] = useState()
-
+    
     useEffect(() => {
       onAuthStateChanged(auth, (currentUser) => {
           setcurrentUser(currentUser)
