@@ -1,27 +1,33 @@
-import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from "../pages/Home"
-import Login from "../pages/Login"
-import Register from "../pages/Register"
-import Details from "../pages/Details"
-import NewBlog from "../pages/NewBlog"
-import Profile from "../pages/Profile"
-import Navbar from "../components/Navbar"
+import React, { Fragment } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import Details from "../pages/Details";
+import NewBlog from "../pages/NewBlog";
+import Profile from "../pages/Profile";
+import Navbar from "../components/Navbar";
+import PrivateRouter from "./PrivateRouter";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
-        <Navbar/>
+      <Fragment>
+        <Navbar />
         <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/register" element={<Register/>}/>
-            <Route path="/details" element={<Details/>}/>
-            <Route path="/newblog" element={<NewBlog/>}/>
-            <Route path="/profile" element={<Profile/>}/>
-        </Routes>
-    </BrowserRouter>
-  )
-}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-export default AppRouter
+          <Route exact path="/" element={<PrivateRouter />}>
+            <Route path="/details/:id" element={<Details />} />
+            <Route path="/newblog" element={<NewBlog />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+        </Routes>
+      </Fragment>
+    </BrowserRouter>
+  );
+};
+
+export default AppRouter;
