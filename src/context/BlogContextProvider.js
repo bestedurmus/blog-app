@@ -29,8 +29,8 @@ const BlogContextProvider = (props) => {
       onValue(query(userRef), (snapshot) => {
         const cards = snapshot.val();
         const cardsArray = [];
-        for (let index in cards) {
-          cardsArray.push({ index, ...cards[index] });
+        for (let id in cards) {
+          cardsArray.push({ id, ...cards[id] });
         }
         setcardList(cardsArray);
         setisLoading(false)

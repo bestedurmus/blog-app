@@ -7,39 +7,29 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 const DetailsCard = ({cardDetail}) => {
     const { content, title, email, imgUrl } = cardDetail
 
-
   return (
     <div>
         <Card
       sx={{
-        margin: "1rem",
-        cursor: "pointer",
-        maxWidth: 345,
-        ":hover": {
-          boxShadow: 20,
-        },
+        margin: "3rem",
       }}
     >
       <CardMedia
         component="img"
-        height="280"
-        width="350"
+        height=""
+        width=""
         image={imgUrl}
         alt={imgUrl}
         sx={{ cursor: "pointer" }}
         // onClick={(e) => detailsfunc(e.target)}
       />
       <CardContent
-        sx={{ padding: 0, width: "350px", whiteSpace: "nowrap" }}
+        sx={{ padding: 0, whiteSpace: "nowrap" }}
         // onClick={(e) => detailsfunc(e.target)}
         
       >
         <CardContent
           sx={{
-            ":hover": {
-              boxShadow: 20,
-            },
-            cursor: "pointer",
             backgroundColor: "silver",
           }}
         >
