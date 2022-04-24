@@ -11,8 +11,6 @@ const Home = () => {
     getBlogs()
   }, [])
   
-  console.log(cardList)
-
   return (
     <div>
       {isLoading ? (

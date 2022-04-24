@@ -18,7 +18,6 @@ const BlogCard = ({card}) => {
   const {content, title, imgUrl, email, id} = card
   const navigate = useNavigate()
   const { currentUser } = useContext(AuthContext)
-  console.log(currentUser)
 
   const detailsFunc = (e) => {
     if(currentUser){

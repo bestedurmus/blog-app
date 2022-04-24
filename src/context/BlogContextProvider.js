@@ -1,4 +1,4 @@
-import { getDatabase, onValue, push, query, ref, set } from "firebase/database";
+import { child, getDatabase, onValue, push, query, ref, set, update } from "firebase/database";
 import React, { createContext, useState } from "react";
 
 export const BlogContext = createContext();
@@ -17,7 +17,6 @@ const BlogContextProvider = (props) => {
       content: props.content,
       email: props.email,
     });
-    console.log("veri eklendi");
   };
 
   const getBlogs = () => {
@@ -41,8 +40,27 @@ const BlogContextProvider = (props) => {
     }
   };
 
+  const updateBlog = (props) => {
+    try {
+      const db = getDatabase()
+      const postData = {
+        title: props.title,
+        imgUrl:props.imgUrl,
+        content: props.content,
+        id:props.id
+      }
+      const newPostKey = push(child(ref(db), "contact")).key
+      const updates = {}
+      updates["/contact/" + newPostKey ] = postData
+      updates[`/user-contact/` + id + "/" + newPostKey ] = postData
+      return update(ref(db), updates)
+    } catch (err) {
+      alert(err.message)
+    }
+  }
+
   return (
-    <BlogContext.Provider value={{ addNewBlog, getBlogs, isLoading, cardList }}>
+    <BlogContext.Provider value={{updateBlog, addNewBlog, getBlogs, isLoading, cardList }}>
       {props.children}
     </BlogContext.Provider>
   );

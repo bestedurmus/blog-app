@@ -6,10 +6,10 @@ import DetailsCard from "../components/DetailsCard";
 const Details = () => {
   const { id } = useParams();
   const { cardList } = useContext(BlogContext);
-  console.log(cardList)
+  // console.log(cardList)
 
   const [cardDetail] = cardList.filter((card) => card.id === id)
-  console.log(cardDetail)
+  // console.log(cardDetail)
 
   return (
     <div>

@@ -8,6 +8,7 @@ import NewBlog from "../pages/NewBlog";
 import Profile from "../pages/Profile";
 import Navbar from "../components/Navbar";
 import PrivateRouter from "./PrivateRouter";
+import UpdateBlog from "../pages/UpdateBlog";
 
 const AppRouter = () => {
   return (
@@ -23,6 +24,7 @@ const AppRouter = () => {
             <Route path="/details/:id" element={<Details />} />
             <Route path="/newblog" element={<NewBlog />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/updateblog/:id" element={<UpdateBlog />} />
           </Route>
         </Routes>
       </Fragment>
