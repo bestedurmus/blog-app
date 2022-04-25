@@ -8,7 +8,7 @@ import {
   Button,
 } from "@mui/material";
 import { Formik, useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContextProvider";
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { BlogContext } from "../context/BlogContextProvider";
@@ -18,14 +18,18 @@ import { BlogContext } from "../context/BlogContextProvider";
 const UpdateBlog = () => {
   const navigate = useNavigate();
   const {currentUser} = useContext(AuthContext)
-  const {updateBlog} = useContext(BlogContext)
+  const {updateBlog, cardList} = useContext(BlogContext)
+  const {id} = useParams()
+  const [cardDetail] = cardList.filter((card) => card.id === id)
 
   const formik = useFormik({
     initialValues: {
-      title: "",
-      imgUrl: "",
-      content:"",
+      title: cardDetail.title,
+      imgUrl: cardDetail.imgUrl,
+      content:cardDetail.content,
       email:currentUser.email,
+      id:cardDetail.id
+
       
     },
     onSubmit:async (values) => {

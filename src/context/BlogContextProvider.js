@@ -1,11 +1,13 @@
-import { child, getDatabase, onValue, push, query, ref, remove, set, update } from "firebase/database";
+import { getDatabase, onValue, push, query, ref, remove, set, update } from "firebase/database";
 import React, { createContext, useState } from "react";
+import {  useNavigate } from "react-router-dom";
 
 export const BlogContext = createContext();
 
 const BlogContextProvider = (props) => {
   const [isLoading, setisLoading] = useState();
   const [cardList, setcardList] = useState();
+  // const navigate = useNavigate()
 
   const addNewBlog = (props) => {
     const db = getDatabase();
@@ -40,38 +42,29 @@ const BlogContextProvider = (props) => {
     }
   };
 
-  // const updateBlog = (props) => {
-  //   try {
-  //     const db = getDatabase()
-  //     const postData = {
-  //       title: props.title,
-  //       imgUrl:props.imgUrl,
-  //       content:props.content,
-  //       id:props.id
-
-  //     }
-  //     const newPostKey = push(child(ref(db), "contact")).key
-  //     const updates = {}
-  //     updates["/contact/" + newPostKey ] = postData
-  //     updates[`/user-contact/` + props.id + "/" + newPostKey ] = postData
-  //     return update(ref(db), updates)
-  //   } catch (err) {
-  //     alert(err.message)
-  //   }
-  // }
-
-  const updateBlog=(props)=>{
-    const db = getDatabase();
-    const updates = {};
-    updates["contact/"+props.id]=props;
-    return update(ref(db),updates);
-
-}
-
+  const updateBlog = (props) => {
+    try {
+      const db = getDatabase()
+      const postData = {
+        title: props.title,
+        imgUrl:props.imgUrl,
+        content:props.content,
+        id:props.id,
+        email:props.email
+      }
+      const updates = {}
+      updates["/contact/" + props.id ] = postData
+      console.log(postData)
+      return update(ref(db), updates)
+    } catch (err) {
+      alert(err.message)
+    }
+  }
 
   const deleteBlog = (id) => {
     const db = getDatabase()
     remove(ref(db,"contact/" + id))
+    // navigate("/")
     console.log("blog silindi")
   }
 
