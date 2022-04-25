@@ -26,6 +26,7 @@ const UpdateBlog = () => {
       imgUrl: "",
       content:"",
       email:currentUser.email,
+      
     },
     onSubmit:async (values) => {
         try {

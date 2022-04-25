@@ -12,14 +12,16 @@ import { Box } from "@mui/system";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContextProvider"
+import { AuthContext } from "../context/AuthContextProvider";
 import { useNavigate, useParams } from "react-router-dom";
+import { BlogContext } from "../context/BlogContextProvider";
 
 const DetailsCard = ({ cardDetail }) => {
   const { content, title, email, imgUrl } = cardDetail;
-  const { currentUser } = useContext(AuthContext)
-  const navigate = useNavigate()
-  const { id } = useParams()
+  const { currentUser } = useContext(AuthContext);
+  const { deleteBlog } = useContext(BlogContext);
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   return (
     <div>
@@ -108,16 +110,27 @@ const DetailsCard = ({ cardDetail }) => {
           </IconButton>
         </CardActions>
         {currentUser.email === email ? (
-          <Button
-          sx={{ backgroundColor: "#4CAF50" }}
-          fullWidth
-          item
-          variant="contained"
-          onClick={() => navigate(`/updateblog/${id}`) }
-        >
-          update
-        </Button>
-        ):  null }
+          <div>
+            <Button
+              sx={{ backgroundColor: "#4CAF50" }}
+              fullWidth
+              item
+              variant="contained"
+              onClick={() => navigate(`/updateblog/${id}`)}
+            >
+              update
+            </Button>
+            <Button
+              sx={{ backgroundColor: "#4CAF50" }}
+              fullWidth
+              item
+              variant="contained"
+              onClick={() => deleteBlog(id)}
+            >
+              delete
+            </Button>
+          </div>
+        ) : null}
       </Card>
     </div>
   );

@@ -12,7 +12,7 @@ const Profile = () => {
       <Card sx={{maxWidth:400, margin:"50px auto", backgroundColor:"#4caf50", color:"white", textAlign:"left"}}>
         <Avatar sx={{margin:" 2rem auto"}}>
           {currentUser.displayName
-          ?.split(" ")
+          ?.toString().split(" ")
           .map((str) => str[0])
           .join("")
           .toUpperCase()

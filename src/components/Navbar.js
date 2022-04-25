@@ -90,7 +90,7 @@ const Navbar = () => {
                 >
                   <Avatar sx={{ backgroundColor: "#fff", color: "#4CAF50" }}>
                     {currentUser.displayName
-                      ?.split(" ")
+                      ?.toString().split(" ")
                       .map((str) => str[0])
                       .join("")
                       .toUpperCase()}
